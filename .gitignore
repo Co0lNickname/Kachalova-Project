@@ -1,0 +1,7 @@
+/.vscode/
+/.idea/
+/vendor/
+/composer.phar
+/composer.phar/
+/local_db/
+*/templates/

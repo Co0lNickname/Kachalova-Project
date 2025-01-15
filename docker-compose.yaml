@@ -1,0 +1,36 @@
+version: '3.8'
+x-server-variables: &server-variables
+  DB_HOST: mysql-db
+  DB_PORT: 3306
+  DB_NAME: mydatabase
+  DB_USER: admin
+  DB_PASSWORD: adminpassword
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    volumes:
+      - ./db:/var/www/mysql
+      - ./db/db-init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: strongpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - '3306:3306'
+  php-server:
+    image: php:latest
+    container_name: php-server
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    environment: *server-variables
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - "9000:9000"
+    command: php -S 0.0.0.0:9000

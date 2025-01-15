@@ -1,0 +1,21 @@
+version: "3.8"
+x-server-variables: &server-variables
+  DB_HOST: sql303.infinityfree.com
+  DB_PORT: 3306
+  DB_NAME: if0_37645932_film_snatching
+  DB_USER: if0_37645932
+  DB_PASSWORD: Y8qXppvTNqgd3Q3
+services:
+  php-server:
+    image: php:latest
+    container_name: php-server
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    environment: *server-variables
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - "9000:9000"
+    command: php -S 0.0.0.0:9000
