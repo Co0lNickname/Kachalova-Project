@@ -17,5 +17,5 @@ if (!$client['IsAdmin']) {
 }
 
 echo "<h1>Welcome to Admin Panel, {$client['Name']}!</h1>";
-echo "<a href=''>Manage Movies</a> | <a href=''>Manage Users</a> | <a href='logout.php'>Logout</a>";
+echo "<a href=''>Manage Users</a> | <a href='logout.php'>Logout</a>";
 echo "<div>Back to <a href='/index.php'>main page</a></div>";
