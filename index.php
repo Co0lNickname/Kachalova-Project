@@ -1,9 +1,14 @@
 <?php
   session_start();
 
+  $isLogin = false;
+
   if (!isset($_SESSION['client_id'])) {
+    $isLogin = false;
     header('Location: ./src/admin/login.html');
     exit();
+  } else {
+    $isLogin = true;
   }
   
   $pages = array(
@@ -34,7 +39,6 @@
       </a>
     </div>
   </div>
-  <h2>Choose what you want to do</h2>
   <div>
     <ol>
       <?php
@@ -45,7 +49,6 @@
         $is_admin = $client['IsAdmin'];
         if ($is_admin) {
             $pages['admin'] = './../admin/index.php';
-            $pages['forms'] = './../templates.php';
         }
 
         foreach ($pages as $key => $page) {
