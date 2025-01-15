@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS Client (
     Email VARCHAR(100) UNIQUE,
     Password VARCHAR(100),
     Wishes VARCHAR(500),
-    IsAdmin BOOLEAN
+    IsAdmin BOOLEAN,
+    IsActive BOOLEAN,
+    IsBlocked BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS Movie (
