@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS Client (
     Name VARCHAR(100),
     Email VARCHAR(100) UNIQUE,
     Password VARCHAR(100),
-    Wishes VARCHAR(500),
     IsAdmin BOOLEAN,
     IsActive BOOLEAN,
     IsBlocked BOOLEAN
