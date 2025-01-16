@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO Client (Name, Username, Email, Password, IsAdmin, IsActive, IsBlocked) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO User (Name, Username, Email, Password, IsAdmin, IsActive, IsBlocked) VALUES (?, ?, ?, ?, ?, ?, ?)");
     try {
         $stmt->execute([$name, $username, $email, $password, 0, 1, 0]);
         echo "
