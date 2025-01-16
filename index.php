@@ -53,12 +53,12 @@
     <ol>
       <?php
         $pdo = require __DIR__ . '/db/config/db.php';
-        $stmt = $pdo->prepare("SELECT * FROM Client WHERE ClientID = :id"); 
-        try {
+        if (isset($_SESSION['client_id'])) {
+          $stmt = $pdo->prepare("SELECT * FROM Client WHERE ClientID = :id"); 
           $stmt->execute(['id' => $_SESSION['client_id']]);
           $client = $stmt->fetch();
           $is_admin = $client['IsAdmin'];
-        } catch (Exception $exception) {
+        } else {
           $is_admin = false;
         }
 
