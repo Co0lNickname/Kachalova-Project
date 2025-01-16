@@ -36,7 +36,8 @@
         <a class="center-item" href="/src/admin/logout.php">
           <button class="pretty-button">Logout</button>
         </a>
-      <?php else: ?>
+      <?php endif; ?>
+      <?php if(!$isLogin): ?>
         <div class="auth-choose">
           <a class="center-item" href="/src/admin/login.html">
             <button class="pretty-button">Log In</button>
@@ -54,7 +55,7 @@
       <?php
         $pdo = require __DIR__ . '/db/config/db.php';
         if (isset($_SESSION['client_id'])) {
-          $stmt = $pdo->prepare("SELECT * FROM Client WHERE ClientID = :id"); 
+          $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
           $stmt->execute(['id' => $_SESSION['client_id']]);
           $client = $stmt->fetch();
           $is_admin = $client['IsAdmin'];
