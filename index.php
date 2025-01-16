@@ -10,8 +10,7 @@
   }
   
   $pages = array(
-     // 'form`s page' => 'forms.php',
-     // 'another page' => 'another.php',
+    'my profile' => 'profile.php',
   );
 ?>
 <!DOCTYPE html>
@@ -51,30 +50,28 @@
     </div>
   </div>
   <div>
-    <ol>
-      <?php
-        $pdo = require __DIR__ . '/db/config/db.php';
-        if (isset($_SESSION['client_id'])) {
-          $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
-          $stmt->execute(['id' => $_SESSION['client_id']]);
-          $client = $stmt->fetch();
-          $is_admin = $client['IsAdmin'];
-        } else {
-          $is_admin = false;
-        }
+    <?php
+      $pdo = require __DIR__ . '/db/config/db.php';
+      if (isset($_SESSION['client_id'])) {
+        $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
+        $stmt->execute(['id' => $_SESSION['client_id']]);
+        $client = $stmt->fetch();
+        $is_admin = $client['IsAdmin'];
+      } else {
+        $is_admin = false;
+      }
 
-        if ($is_admin) {
-            $pages['admin'] = './../admin/index.php';
-        }
+      if ($is_admin) {
+          $pages['admin'] = './../admin/index.php';
+      }
 
-        foreach ($pages as $key => $page) {
-          printf(
-            '<strong><li><a href="./src/pages/%s">%s</a></li></strong>',
-             $page, $key
-            );
-        }
-      ?>
-    </ol>
+      foreach ($pages as $key => $page) {
+        printf(
+          '<strong><li><a href="./src/pages/%s">%s</a></li></strong>',
+            $page, $key
+          );
+      }
+    ?>
   </div>
 </body>
 </html>
