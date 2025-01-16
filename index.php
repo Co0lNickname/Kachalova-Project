@@ -58,11 +58,10 @@
           $stmt->execute(['id' => $_SESSION['client_id']]);
           $client = $stmt->fetch();
           $is_admin = $client['IsAdmin'];
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
           $is_admin = false;
         }
-        
+
         if ($is_admin) {
             $pages['admin'] = './../admin/index.php';
         }
