@@ -33,16 +33,16 @@
     <h1>Hello, glad to see You on our home page</h1>
     <div class="auth">
       <?php if ($isLogin): ?>
-        <a href="/src/admin/logout.php">
+        <a class="center-item" href="/src/admin/logout.php">
           <button class="pretty-button">Logout</button>
         </a>
       <?php else: ?>
         <div class="auth-choose">
-          <a href="/src/admin/login.html">
+          <a class="center-item" href="/src/admin/login.html">
             <button class="pretty-button">Log In</button>
           </a>
-          <div class="delimiter">/</div>
-          <a href="/src/admin/signup.html">
+          <div class="delimiter center-item">/</div>
+          <a class="center-item" href="/src/admin/signup.html">
           <button class="pretty-button">Sign Up</button>
         </a>
         </div>

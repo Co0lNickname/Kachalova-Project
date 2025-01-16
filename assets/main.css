@@ -11,3 +11,14 @@
 .pretty-button:hover {
     background-color: #213488;
 }
+.auth-choose {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+}
+.delimiter {
+    font-size: 2.25rem;
+    align-self: last baseline;
+    width: 1rem;
+}
