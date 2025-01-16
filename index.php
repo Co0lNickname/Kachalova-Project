@@ -5,8 +5,6 @@
 
   if (!isset($_SESSION['client_id'])) {
     $isLogin = false;
-    header('Location: ./src/admin/login.html');
-    exit();
   } else {
     $isLogin = true;
   }
@@ -34,9 +32,21 @@
   <div class="header">
     <h1>Hello, glad to see You on our home page</h1>
     <div class="auth">
-      <a href="/src/admin/logout.php">
-        <button class="pretty-button">Logout</button>
-      </a>
+      <?php if ($isLogin): ?>
+        <a href="/src/admin/logout.php">
+          <button class="pretty-button">Logout</button>
+        </a>
+      <?php else: ?>
+        <div class="auth-choose">
+          <a href="/src/admin/login.html">
+            <button class="pretty-button">Log In</button>
+          </a>
+          <div class="delimiter">/</div>
+          <a href="/src/admin/signup.html">
+          <button class="pretty-button">Sign Up</button>
+        </a>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
   <div>
