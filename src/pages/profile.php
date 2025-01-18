@@ -28,7 +28,7 @@
 </head>
 <?php if ($isLogin): ?>
 <header>
-    <h1>Welcome <?php $client['Name'] ?> to your personal page.</h1>
+    <h1>Welcome <?= $name ?> to your personal page.</h1>
 </header>
 <body>
 <div class="profile-data">
@@ -37,13 +37,13 @@
     </div>
     <div class="personal-data">
         <div class="user-info name">
-            <h3>Name</h3>
+            <h3><?= $name ?></h3>
         </div>
         <div class="user-info username">
-            <h3>Username</h3>
+            <h3><?= $userName ?></h3>
         </div>
         <div class="user-info email">
-            <h3>Email</h3>
+            <h3><?= $email ?></h3>
         </div>
     </div>
 </div>
