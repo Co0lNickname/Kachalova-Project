@@ -7,7 +7,7 @@ if (!isset($_SESSION['client_id'])) {
     exit();
 }
 $clientId = $_SESSION['client_id'];
-$stmt = $pdo->prepare("SELECT * FROM Client WHERE ClientID = :id");
+$stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id");
 $stmt->execute(['id' => $clientId]);
 $client = $stmt -> fetch();
 
