@@ -8,7 +8,7 @@
     } else {
         $isLogin = true;
         $clientId = $_SESSION['client_id'];
-        $stmt = $pdo->prepare("SELECT * FROM User WHERE ClientID = :id");
+        $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id");
         $stmt->execute(['id' => $clientId]);
         $client = $stmt -> fetch();
     }
