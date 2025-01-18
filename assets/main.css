@@ -22,3 +22,13 @@
     align-self: last baseline;
     width: 1rem;
 }
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+.personal-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
