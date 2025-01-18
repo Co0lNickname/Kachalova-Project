@@ -33,7 +33,7 @@
 <body>
 <div class="profile-data">
     <div class="profile-img">
-        <img class="user-img" width="270" height="300" src="/task/photo_2025-01-16_00-53-40.jpg" alt="user-picture">
+        <img class="user-img" width="270" height="300" src="" alt="user-picture">
     </div>
     <div class="personal-data">
         <div class="user-info name">
