@@ -35,8 +35,7 @@
         <a class="center-item" href="/src/admin/logout.php">
           <button class="pretty-button">Logout</button>
         </a>
-      <?php endif; ?>
-      <?php if(!$isLogin): ?>
+      <?php else: ?>
         <div class="auth-choose">
           <a class="center-item" href="/src/admin/login.html">
             <button class="pretty-button">Log In</button>
