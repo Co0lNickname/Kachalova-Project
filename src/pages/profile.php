@@ -3,6 +3,7 @@
 
     session_start();
 
+    $client = null;
     if (!isset($_SESSION['client_id'])) {
         $isLogin = false;
     } else {
@@ -12,6 +13,10 @@
         $stmt->execute(['id' => $clientId]);
         $client = $stmt -> fetch();
     }
+    $name = $client != null ? $client['Name'] : 'Undefined';
+    $userName = $client != null ? $client['Username'] : 'Undefined';
+    $email = $client != null ? $client['Email'] : 'Undefined';
+    $profileImage = $client != null ? $client['ProfileImage'] : 'Undefined';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,11 +26,27 @@
     <link rel="stylesheet" href="/assets/main.css">
     <title>Your profile</title>
 </head>
+<?php if ($isLogin): ?>
+<header>
+    <h1>Welcome <?php $client['Name'] ?> to your personal page.</h1>
+</header>
 <body>
-    <div>
-        <header>
-            <h1>Welcome maria to your personal page.</h1>
-        </header>
+<div class="profile-data">
+    <div class="profile-img">
+        <img class="user-img" width="270" height="300" src="/task/photo_2025-01-16_00-53-40.jpg" alt="user-picture">
     </div>
+    <div class="personal-data">
+        <div class="user-info name">
+            <h3>Name</h3>
+        </div>
+        <div class="user-info username">
+            <h3>Username</h3>
+        </div>
+        <div class="user-info email">
+            <h3>Email</h3>
+        </div>
+    </div>
+</div>
 </body>
+<?php endif; ?>
 </html>
