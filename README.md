@@ -22,6 +22,14 @@ docker exec -it mysql bash
 ```
 
 Чтобы воспользоваться самой субд `mysql` есть два варианта:
+1. либо уже находясь в контейнере, используя `bash`
+``` bash
+mysql -uadmin -padminpassword
+```
+2. либо извне контейнера
+```
+docker exec -it mysql mysql -uadmin -padminpassword
+```
 
 ## Решение max depth error
 
