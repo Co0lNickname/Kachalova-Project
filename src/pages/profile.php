@@ -13,7 +13,7 @@
                 "SELECT Name, Username, Email, User.UserID, ProfileImage, MimeType
                 FROM User 
                     JOIN UsersImages ON User.UserID = UsersImages.UserID 
-                    JOIN mydatabase.ProfilePictures on ProfilePictures.ImageID = UsersImages.ImageID
+                    JOIN ProfilePictures on ProfilePictures.ImageID = UsersImages.ImageID
                 WHERE User.UserID = :id"
         );
         $stmt->execute(['id' => $clientId]);
@@ -53,9 +53,9 @@
 </header>
 <body>
 <div class="profile-data">
-    <div class="profile-img">
-        <img class="user-img" width="270" height="300" src="<?= $profileImageBlob ?>" alt="user-picture">
-    </div>
+<!--    <div class="profile-img">-->
+<!--        <img class="user-img" width="270" height="300" src="--><?php //= $profileImageBlob ?><!--" alt="user-picture">-->
+<!--    </div>-->
     <div class="personal-data">
         <div class="user-info name">
             <h3>Your name</h3>
