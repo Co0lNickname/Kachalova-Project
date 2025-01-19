@@ -42,7 +42,7 @@
     $stmt->execute(['id' => $clientId]);
     $friends = $stmt -> fetch();
 
-    $stmt = $pdo->prepare("SELECT * FROM FriendshipRequests WHERE ToUser = :id");
+    $stmt = $pdo->prepare("SELECT Name, Username, IsAccepted FROM FriendshipRequests JOIN User ON User.UserID = FriendshipRequests.FromID WHERE FriendshipRequests.ToUser = :id");
     $stmt->execute(['id' => $clientId]);
     $requests = $stmt -> fetch();
 ?>
@@ -88,13 +88,13 @@
         <button class="pretty-button">Change data</button>
     </a>
 </div>
-<div class="friends-list">
-    <div class="friend-card">
+<div class="friends-data">
+    <div class="friends-list">
         <?php
         foreach ($friend as $oneFriend) {
             printf(
             '
-            <div>
+            <div class="friend-card">
                 <p>%s</p>
                 <p>%s</p>    
             </div>
@@ -103,11 +103,17 @@
             );
         }
         ?>
+        <div class="make-friends">
+            <a href="/src/pages/addFriendForm.html" class="add-friend-ref">
+                <button class="pretty-button">Add friend</button>
+            </a>
+        </div>
     </div>
-    <div class="make-friends">
-        <a href="/src/pages/addFriendForm.html" class="add-friend-ref">
-            <button class="pretty-button">Add friend</button>
-        </a>
+    <div class="friends-requests">
+        <div class="request">
+            <p>Name: <?= $ ?></p>
+            
+        </div>
     </div>
 </div>
 </body>
