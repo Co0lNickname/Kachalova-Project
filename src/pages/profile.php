@@ -46,7 +46,7 @@
 <body>
 <div class="profile-data">
     <div class="profile-img">
-        <img class="user-img" width="270" height="300" src="" alt="user-picture">
+        <img class="user-img" width="270" height="300" src="<?= $profileImage ?>" alt="user-picture">
     </div>
     <div class="personal-data">
         <div class="user-info name">
