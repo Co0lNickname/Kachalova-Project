@@ -54,6 +54,11 @@
         </div>
     </div>
 </div>
+<div class="change-data">
+    <a href="/index.php">
+        <button class="pretty-button">Change data</button>
+    </a>
+</div>
 </body>
 <?php else: ?>
 <body>
