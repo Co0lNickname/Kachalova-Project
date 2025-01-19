@@ -14,6 +14,13 @@ CREATE TABLE IF NOT EXISTS Friendship (
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (FriendID) REFERENCES User(UserID)
 );
+CREATE TABLE IF NOT EXISTS FriendshipRequests (
+    ToUser INT,
+    FromUser INT,
+    IsAccepted BOOLEAN,
+    FOREIGN KEY (ToUser) REFERENCES User(UserID),
+    FOREIGN KEY (FromUser) REFERENCES User(UserID)
+);
 CREATE TABLE IF NOT EXISTS ProfilePictures (
     ImageID INT AUTO_INCREMENT PRIMARY KEY,
     ProfileImage BLOB,
