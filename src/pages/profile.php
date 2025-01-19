@@ -82,7 +82,7 @@
 
     </div>
     <div class="make-friends">
-        <a href="" class="add-friend-ref">
+        <a href="/src/pages/addFriendForm.html" class="add-friend-ref">
             <button class="pretty-button">Add friend</button>
         </a>
     </div>
