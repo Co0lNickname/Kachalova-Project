@@ -50,5 +50,11 @@
     </div>
 </div>
 </body>
+<?php else: ?>
+<body>
+    <div>
+        Back to <a href='/index.php'>main page</a>
+    </div>
+</body>
 <?php endif; ?>
 </html>
