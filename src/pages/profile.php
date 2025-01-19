@@ -19,9 +19,12 @@
         $stmt->execute(['id' => $clientId]);
         $client = $stmt -> fetch();
     }
+    $id = $client != null ? $client['UserID'] : 'Undefined';
     $name = $client != null ? $client['Name'] : 'Undefined';
     $userName = $client != null ? $client['Username'] : 'Undefined';
     $email = $client != null ? $client['Email'] : 'Undefined';
+    $profileImage = $client != null ? $client['ProfileImage'] : 'Undefined';
+    $mimeType = $client != null ? $client['MimeType'] : 'Undefined';
 ?>
 <!DOCTYPE html>
 <html lang="en">
