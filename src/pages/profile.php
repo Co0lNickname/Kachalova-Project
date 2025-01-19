@@ -9,13 +9,15 @@
     } else {
         $isLogin = true;
         $clientId = $_SESSION['client_id'];
-//        $stmt = $pdo->prepare(
+
+        //        $stmt = $pdo->prepare(
 //                "SELECT Name, Username, Email, User.UserID, ProfileImage, MimeType
 //                FROM User
 //                    JOIN UsersImages ON User.UserID = UsersImages.UserID
 //                    JOIN ProfilePictures on ProfilePictures.ImageID = UsersImages.ImageID
 //                WHERE User.UserID = :id"
 //        );
+
 		$stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id");
         $stmt->execute(['id' => $clientId]);
         $client = $stmt -> fetch();
@@ -24,6 +26,7 @@
     $name = $client != null ? $client['Name'] : 'Undefined';
     $userName = $client != null ? $client['Username'] : 'Undefined';
     $email = $client != null ? $client['Email'] : 'Undefined';
+
 //    $profileImageBlob = $client != null ? $client['ProfileImage'] : 'Undefined';
 //    $mimeType = $client != null ? $client['MimeType'] : 'Undefined';
 
@@ -34,6 +37,8 @@
 //    $data = ob_get_contents();
 //    ob_end_clean();
 //    echo '<img src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
