@@ -35,8 +35,10 @@
 .personal-data {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 }
 .profile-btn {
     align-content: end;
+}
+.right-placing {
+    align-self: flex-end;
 }
