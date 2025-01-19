@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="change-data">
-    <a href="/src/pages/changeProfileFrom.html">
+    <a href="/src/pages/editProfileFrom.php">
         <button class="pretty-button">Change data</button>
     </a>
 </div>
