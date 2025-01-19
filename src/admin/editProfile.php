@@ -1,8 +1,12 @@
 <?php
 $pdo = require __DIR__ . '/../../db/config/db.php';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if (isset($_SESSION['client_id'])) {
+	if (!isset($_SESSION['client_id'])) {
+		echo 'You are not logged in ';
+		echo '<a href="login.html">Login</a>';
+	} else {
 		$userID = $_SESSION['client_id'];
 		$name = $_POST['name'];
 		$username = $_POST['username'];
@@ -16,11 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				'email' => $email,
 				'id' => $userID
 			]);
+			header("Location: /src/pages/profile.php");
 		} catch (PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
-	} else {
-		echo 'You are not logged in ';
-		echo '<a href="login.html">Login</a>';
 	}
 }
