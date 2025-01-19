@@ -16,7 +16,6 @@
     $name = $client != null ? $client['Name'] : 'Undefined';
     $userName = $client != null ? $client['Username'] : 'Undefined';
     $email = $client != null ? $client['Email'] : 'Undefined';
-    $profileImage = $client != null ? $client['ProfileImage'] : 'Undefined';
 ?>
 <!DOCTYPE html>
 <html lang="en">
