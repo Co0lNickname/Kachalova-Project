@@ -9,7 +9,7 @@
 <body>
     <form action="/src/admin/editProfile.php" method="POST">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value="<?= ?>" required>
         <br>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
