@@ -10,7 +10,7 @@
         $isLogin = true;
         $clientId = $_SESSION['client_id'];
         $stmt = $pdo->prepare(
-                "SELECT Name, Username, User.UserID, ProfileImage, MimeType
+                "SELECT Name, Username, Email, User.UserID, ProfileImage, MimeType
                 FROM User 
                     JOIN UsersImages ON User.UserID = UsersImages.UserID 
                     JOIN mydatabase.ProfilePictures on ProfilePictures.ImageID = UsersImages.ImageID
