@@ -90,7 +90,19 @@
 </div>
 <div class="friends-list">
     <div class="friend-card">
-
+        <?php
+        foreach ($friend as $oneFriend) {
+            printf(
+            '
+            <div>
+                <p>%s</p>
+                <p>%s</p>    
+            </div>
+            ',
+                $oneFriend['Name'], $oneFriend['Username']
+            );
+        }
+        ?>
     </div>
     <div class="make-friends">
         <a href="/src/pages/addFriendForm.html" class="add-friend-ref">
