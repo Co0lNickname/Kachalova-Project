@@ -8,10 +8,16 @@
   } else {
     $isLogin = true;
   }
-  
-  $pages = array(
-    'my profile' => 'profile.php',
-  );
+
+  $pdo = require __DIR__ . '/db/config/db.php';
+  if (isset($_SESSION['client_id'])) {
+    $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
+    $stmt->execute(['id' => $_SESSION['client_id']]);
+    $client = $stmt->fetch();
+    $is_admin = $client['IsAdmin'];
+  } else {
+    $is_admin = false;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +38,14 @@
     <h1>Hello, glad to see You on our home page</h1>
     <div class="auth">
       <?php if ($isLogin): ?>
-        <a class="center-item" href="/src/admin/logout.php">
-          <button class="pretty-button">Logout</button>
-        </a>
+        <div class="auth-complete">
+          <a class="profile-btn" href="/src/pages/profile.php">
+            <img width="43" src="/assets/profile.png" alt="profile-png">
+          </a>
+          <a class="center-item" href="/src/admin/logout.php">
+            <button class="pretty-button">Logout</button>
+          </a>
+        </div>
       <?php else: ?>
         <div class="auth-choose">
           <a class="center-item" href="/src/admin/login.html">
@@ -49,28 +60,7 @@
     </div>
   </div>
   <div>
-    <?php
-      $pdo = require __DIR__ . '/db/config/db.php';
-      if (isset($_SESSION['client_id'])) {
-        $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
-        $stmt->execute(['id' => $_SESSION['client_id']]);
-        $client = $stmt->fetch();
-        $is_admin = $client['IsAdmin'];
-      } else {
-        $is_admin = false;
-      }
-
-      if ($is_admin) {
-          $pages['admin'] = './../admin/index.php';
-      }
-
-      foreach ($pages as $key => $page) {
-        printf(
-          '<strong><li><a href="./src/pages/%s">%s</a></li></strong>',
-            $page, $key
-          );
-      }
-    ?>
+    WOOOW INFO ABOUT SITE
   </div>
 </body>
 </html>
