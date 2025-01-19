@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			echo "Error: " . $e->getMessage();
 		}
 	} else {
-		echo 'You are not logged in';
-		echo '<a href="login.php">Login</a>';
+		echo 'You are not logged in ';
+		echo '<a href="login.html">Login</a>';
 	}
 }
