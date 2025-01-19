@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="signup.php" method="POST">
+    <form action="/src/admin/editProfile.php" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         <br>
@@ -16,22 +16,14 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button class="pretty-button" type="submit">Sign Up</button>
-    </form>
-    <div class="buttons">
         <div class="confirm-button">
-            <a href="">
-                <button class="pretty-button">Confirm changes</button>
-            </a>
+            <button class="pretty-button">Confirm changes</button>
         </div>
-        <div class="to-profile-button">
-            <a href="/src/pages/profile.php">
-                <button class="pretty-button">Return to profile</button>
-            </a>
-        </div>
+    </form>
+    <div class="to-profile-button">
+        <a href="/src/pages/profile.php">
+            <button class="pretty-button">Return to profile</button>
+        </a>
     </div>
 </body>
 </html>
