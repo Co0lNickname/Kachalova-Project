@@ -38,7 +38,13 @@
 //    ob_end_clean();
 //    echo '<img src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
 
+    $stmt = $pdo->prepare("SELECT Username, Name FROM Friendship JOIN User ON User.UserID = Friendship.FriendID WHERE User.UserID = :id");
+    $stmt->execute(['id' => $clientId]);
+    $friends = $stmt -> fetch();
 
+    $stmt = $pdo->prepare("SELECT * FROM FriendshipRequests WHERE ToUser = :id");
+    $stmt->execute(['id' => $clientId]);
+    $requests = $stmt -> fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
