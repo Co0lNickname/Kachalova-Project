@@ -7,13 +7,20 @@
     <title>Make Friends!</title>
 </head>
 <body>
-    <div class="add-friend">
-        <label for="username">Enter your friend's username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <div class="confirm-button">
-            <button class="pretty-button">Add Friend</button>
+    <form action="" method="post">
+        <div class="add-friend">
+            <label for="username">Enter your friend's username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <div class="confirm-button">
+                <button class="pretty-button">Add Friend</button>
+            </div>
         </div>
+    </form>
+    <div class="to-profile-button">
+        <a href="/src/pages/profile.php">
+            <button class="pretty-button">Return to profile</button>
+        </a>
     </div>
 </body>
 </html>
