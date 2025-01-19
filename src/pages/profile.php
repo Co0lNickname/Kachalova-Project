@@ -26,7 +26,7 @@
     <title>Your profile</title>
 </head>
 <?php if ($isLogin): ?>
-<header>
+<header class="profile-page-header">
     <h1>Welcome <?= $name ?> to your personal page.</h1>
     <div>
         <a href="/index.php">

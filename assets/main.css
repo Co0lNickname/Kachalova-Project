@@ -43,3 +43,7 @@
 .right-placing {
     align-self: flex-end;
 }
+.profile-page-header {
+    display: flex;
+    justify-content: space-between;
+}
