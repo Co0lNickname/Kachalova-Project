@@ -28,6 +28,11 @@
 <?php if ($isLogin): ?>
 <header>
     <h1>Welcome <?= $name ?> to your personal page.</h1>
+    <div>
+        <a href="/index.php">
+            <button class="pretty-button">Back Home</button>
+        </a>
+    </div>
 </header>
 <body>
 <div class="profile-data">
