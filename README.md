@@ -2,15 +2,26 @@
 
 ## Запуск
 
-> Запуск проекта осуществляется через технологию контейнеризации Docker двумя способами:
-> 1. с помощью команды `docker run`
->``` bash
-> docker run --rm -p 8000:8000 -v $(pwd):/var/www/html -w /var/www/html php:latest php -S 0.0.0.> 0:9000
-> ```
-> 2. с помощью утилиты `docker compose`
-> ```
-> docker compose up --build -d
-> ```
+Запуск проекта осуществляется через технологию контейнеризации Docker двумя способами:
+1. с помощью команды `docker run`
+``` bash
+ docker run --rm -p 8000:8000 -v $(pwd):/var/www/html -w /var/www/html php:latest php -S 0.0.0.> 0:9000
+```
+2. с помощью утилиты `docker compose`
+```
+docker compose up --build -d
+```
+
+## Работа с контейнерами
+
+### Контейнер базы данных
+
+Для входа в контейнер базы данных, который называется `mysql` с использованием `bash` используется следующая команда
+```
+docker exec -it mysql bash
+```
+
+Чтобы воспользоваться самой субд `mysql` есть два варианта:
 
 ## Решение max depth error
 
