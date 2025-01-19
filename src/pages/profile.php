@@ -36,13 +36,16 @@
     </div>
     <div class="personal-data">
         <div class="user-info name">
-            <h3><?= $name ?></h3>
+            <h3>Your name</h3>
+            <p class="right-placing"><?= $name ?></p>
         </div>
         <div class="user-info username">
-            <h3><?= $userName ?></h3>
+            <h3>Your username</h3>
+            <p class="right-placing"><?= $userName ?></p>
         </div>
         <div class="user-info email">
-            <h3><?= $email ?></h3>
+            <h3>Your email</h3>
+            <p class="right-placing"><?= $email ?></p>
         </div>
     </div>
 </div>
