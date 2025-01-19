@@ -32,7 +32,8 @@
     flex-direction: column;
     place-items: center;
 }
-.personal-data {
+.personal-data,
+.user-info {
     display: flex;
     flex-direction: column;
 }
