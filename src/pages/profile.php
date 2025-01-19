@@ -77,6 +77,16 @@
         <button class="pretty-button">Change data</button>
     </a>
 </div>
+<div class="friends-list">
+    <div class="friend-card">
+
+    </div>
+    <div class="make-friends">
+        <a href="" class="add-friend-ref">
+            <button class="pretty-button">Add friend</button>
+        </a>
+    </div>
+</div>
 </body>
 <?php else: ?>
 <body>
