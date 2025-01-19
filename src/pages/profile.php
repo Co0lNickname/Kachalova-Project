@@ -23,8 +23,16 @@
     $name = $client != null ? $client['Name'] : 'Undefined';
     $userName = $client != null ? $client['Username'] : 'Undefined';
     $email = $client != null ? $client['Email'] : 'Undefined';
-    $profileImage = $client != null ? $client['ProfileImage'] : 'Undefined';
+    $profileImageBlob = $client != null ? $client['ProfileImage'] : 'Undefined';
     $mimeType = $client != null ? $client['MimeType'] : 'Undefined';
+
+    $image = imagecreatefromstring($profileImageBlob);
+
+    ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+    imagejpeg($image, null, 80);
+    $data = ob_get_contents();
+    ob_end_clean();
+//    echo '<img src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +54,7 @@
 <body>
 <div class="profile-data">
     <div class="profile-img">
-        <img class="user-img" width="270" height="300" src="<?= $profileImage ?>" alt="user-picture">
+        <img class="user-img" width="270" height="300" src="<?= $profileImageBlob ?>" alt="user-picture">
     </div>
     <div class="personal-data">
         <div class="user-info name">
