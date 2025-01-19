@@ -17,6 +17,11 @@
     justify-content: space-between;
     justify-items: center;
 }
+.auth-complete {
+    display: flex;
+    justify-content: space-around;
+    width: 10rem;
+}
 .delimiter {
     font-size: 2.25rem;
     align-self: last baseline;
@@ -31,4 +36,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+.profile-btn {
+    align-content: center;
 }
