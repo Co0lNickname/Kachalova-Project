@@ -10,7 +10,7 @@
   }
 
   $pdo = require __DIR__ . '/db/config/db.php';
-  if (isset($_SESSION['client_id'])) {
+  if ($isLogin) {
     $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
     $stmt->execute(['id' => $_SESSION['client_id']]);
     $client = $stmt->fetch();
