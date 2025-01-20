@@ -91,7 +91,7 @@
 <div class="friends-data">
     <div class="friends-list">
         <?php
-        foreach ($friend as $oneFriend) {
+        foreach ($friends as $friend) {
             printf(
             '
             <div class="friend-card">
@@ -99,7 +99,7 @@
                 <p>%s</p>    
             </div>
             ',
-                $oneFriend['Name'], $oneFriend['Username']
+                $friend['Name'], $friend['Username']
             );
         }
         ?>
@@ -111,7 +111,7 @@
     </div>
     <div class="friends-requests">
         <div class="request">
-            <p>Name: <?= $ ?></p>
+            <p>Name: </p>
             
         </div>
     </div>
