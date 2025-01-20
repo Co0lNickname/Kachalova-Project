@@ -1,7 +1,9 @@
 FROM php:latest
 
 RUN apt-get update && apt-get install -y \
+    git \
     unzip \
+    zip \
     libmariadb-dev \
     && rm -rf /var/lib/apt/lists/*
 
