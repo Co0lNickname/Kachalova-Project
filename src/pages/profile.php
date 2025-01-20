@@ -39,11 +39,11 @@
 //    echo '<img src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
 
     $stmt = $pdo->prepare("SELECT Username, Name FROM Friendship JOIN User ON User.UserID = Friendship.FriendID WHERE User.UserID = :id");
-    $stmt->execute(['id' => $clientId]);
+    $stmt->execute(['id' => $id]);
     $friends = $stmt -> fetch();
 
-    $stmt = $pdo->prepare("SELECT Name, Username, IsAccepted FROM FriendshipRequests JOIN User ON User.UserID = FriendshipRequests.FromID WHERE FriendshipRequests.ToUser = :id");
-    $stmt->execute(['id' => $clientId]);
+    $stmt = $pdo->prepare("SELECT Name, Username, IsAccepted FROM FriendshipRequests JOIN User ON User.UserID = FriendshipRequests.FromUser WHERE FriendshipRequests.ToUser = :id");
+    $stmt->execute(['id' => $id]);
     $requests = $stmt -> fetch();
 ?>
 <!DOCTYPE html>
