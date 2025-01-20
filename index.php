@@ -3,9 +3,7 @@
 
   $isLogin = false;
 
-  if (!isset($_SESSION['client_id'])) {
-    $isLogin = false;
-  } else {
+  if (isset($_SESSION['client_id'])) {
     $isLogin = true;
   }
 
@@ -14,9 +12,6 @@
     $stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id"); 
     $stmt->execute(['id' => $_SESSION['client_id']]);
     $client = $stmt->fetch();
-    $is_admin = $client['IsAdmin'];
-  } else {
-    $is_admin = false;
   }
 ?>
 <!DOCTYPE html>
@@ -60,7 +55,7 @@
     </div>
   </div>
   <div>
-    WOOOW INFO ABOUT SITE
+    INFO ABOUT SITE
   </div>
 </body>
 </html>
