@@ -1,45 +1,77 @@
 <?php
-$pdo = require __DIR__ . '/../../db/config/db.php';
-session_start();
+require_once __DIR__ . '/../../src/services/DatabaseService.php';
+require_once __DIR__ . '/../../src/services/SessionService.php';
+require_once __DIR__ . '/../../src/components/Header.php';
+require_once __DIR__ . '/../../src/components/Footer.php';
+require_once __DIR__ . '/../../src/components/FormElements.php';
 
-$client = null;
-if (isset($_SESSION['client_id'])) {
-	$clientId = $_SESSION['client_id'];
-	$stmt = $pdo->prepare("SELECT * FROM User WHERE UserID = :id");
-	$stmt->execute(['id' => $clientId]);
-	$client = $stmt -> fetch();
+$sessionService = new SessionService();
+$isLoggedIn = $sessionService->isLoggedIn();
+
+if (!$isLoggedIn) {
+    $sessionService->setFlashMessage('error', 'You need to be logged in to edit your profile');
+    header('Location: /index.php');
+    exit();
 }
-$name = $client != null ? $client['Name'] : 'Undefined';
-$userName = $client != null ? $client['Username'] : 'Undefined';
-$email = $client != null ? $client['Email'] : 'Undefined';
+
+$db = new DatabaseService();
+$user = $db->getUserById($sessionService->getUserId());
+
+// Обработка отправки формы
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = [
+        'Name' => $_POST['name'] ?? '',
+        'Username' => $_POST['username'] ?? '',
+        'Email' => $_POST['email'] ?? '',
+        'Password' => $_POST['password'] ?? ''
+    ];
+    
+    if ($db->updateUser($sessionService->getUserId(), $data)) {
+        $sessionService->setFlashMessage('success', 'Profile updated successfully');
+        header('Location: /src/pages/profile.php');
+        exit();
+    } else {
+        $sessionService->setFlashMessage('error', 'Failed to update profile');
+    }
+}
+
+// Вывод страницы
+echo renderHeader('Edit Profile', true);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/src/admin/editProfile.php" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="<?= $name ?>" required>
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="<?= $userName ?>" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?= $email ?>" required>
-        <br>
-        <div class="confirm-button">
-            <button class="pretty-button">Confirm changes</button>
-        </div>
-    </form>
-    <div class="to-profile-button">
-        <a href="/src/pages/profile.php">
-            <button class="pretty-button">Return to profile</button>
-        </a>
-    </div>
-</body>
-</html>
+
+<div class="edit-profile-container">
+    <h2 class="form-title">Edit Your Profile</h2>
+    
+    <?php
+    // Формируем содержимое формы
+    $formContent = 
+        renderInput('text', 'name', 'Name', $user['Name'] ?? '', true) .
+        renderInput('text', 'username', 'Username', $user['Username'] ?? '', true) .
+        renderInput('email', 'email', 'Email', $user['Email'] ?? '', true) .
+        renderInput('password', 'password', 'New Password', '', false, 'Leave empty to keep current password') .
+        '<div class="form-actions">' .
+            renderButton('Save Changes') .
+            '<a href="/src/pages/profile.php" class="btn btn-secondary">Cancel</a>' .
+        '</div>';
+    
+    // Рендерим форму
+    echo renderForm('/src/admin/editProfile.php', 'post', $formContent);
+    ?>
+</div>
+
+<style>
+.edit-profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+</style>
+
+<?php
+echo renderFooter();
+?>
