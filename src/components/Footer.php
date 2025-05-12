@@ -8,7 +8,11 @@ function renderFooter()
         <footer class="main-footer">
             <div class="container">
                 <div class="footer-content">
-                    <p>&copy; <?= date('Y') ?> Kachalova Project. All rights reserved.</p>
+                    <p>
+                        &copy; <?= date('Y') ?>
+                        <a href="https://github.com/DocLivsey">DocLivsey@github</a>.
+                        All rights reserved.
+                    </p>
                 </div>
             </div>
         </footer>
