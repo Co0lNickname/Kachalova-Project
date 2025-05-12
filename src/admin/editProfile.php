@@ -1,28 +1,40 @@
 <?php
-$pdo = require __DIR__ . '/../../db/config/db.php';
-session_start();
+require_once __DIR__ . '/../../src/services/DatabaseService.php';
+require_once __DIR__ . '/../../src/services/SessionService.php';
+
+$sessionService = new SessionService();
+$db = new DatabaseService();
+
+if (!$sessionService->isLoggedIn()) {
+	$sessionService->setFlashMessage('error', 'You need to be logged in to edit your profile');
+	header('Location: /src/admin/login.html');
+	exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if (!isset($_SESSION['client_id'])) {
-		echo 'You are not logged in ';
-		echo '<a href="login.html">Login</a>';
-	} else {
-		$userID = $_SESSION['client_id'];
-		$name = $_POST['name'];
-		$username = $_POST['username'];
-		$email = $_POST['email'];
-
-		$stmt = $pdo->prepare("UPDATE User SET Name = :name, Username = :username, Email = :email WHERE UserID = :id");
-		try {
-			$stmt->execute([
-				'name' => $name,
-				'username' => $username,
-				'email' => $email,
-				'id' => $userID
-			]);
-			header("Location: /src/pages/profile.php");
-		} catch (PDOException $e) {
-			echo "Error: " . $e->getMessage();
-		}
+	$userId = $sessionService->getUserId();
+	
+	$data = [
+		'Name' => $_POST['name'] ?? '',
+		'Username' => $_POST['username'] ?? '',
+		'Email' => $_POST['email'] ?? '',
+	];
+	
+	// Добавляем пароль в обновляемые данные только если он был предоставлен
+	if (!empty($_POST['password'])) {
+		$data['Password'] = $_POST['password'];
 	}
+	
+	if ($db->updateUser($userId, $data)) {
+		$sessionService->setFlashMessage('success', 'Profile updated successfully');
+	} else {
+		$sessionService->setFlashMessage('error', 'Failed to update profile');
+	}
+	
+	header('Location: /src/pages/profile.php');
+	exit();
+} else {
+	// Если не POST запрос, перенаправляем на форму редактирования
+	header('Location: /src/pages/editProfileForm.php');
+	exit();
 }

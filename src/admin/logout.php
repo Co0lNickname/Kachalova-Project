@@ -1,7 +1,8 @@
 <?php
-$pdo = require __DIR__ . '/../../db/config/db.php';
+require_once __DIR__ . '/../../src/services/SessionService.php';
 
-session_start();
-session_destroy();
-header("Location: login.html");
-exit;
+$sessionService = new SessionService();
+$sessionService->logout();
+
+header('Location: /index.php');
+exit();

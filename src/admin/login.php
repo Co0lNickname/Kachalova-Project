@@ -1,21 +1,34 @@
 <?php
-$pdo = require __DIR__ . '/../../db/config/db.php';
+require_once __DIR__ . '/../../src/services/DatabaseService.php';
+require_once __DIR__ . '/../../src/services/SessionService.php';
 
-session_start();
+$sessionService = new SessionService();
+$db = new DatabaseService();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    $stmt = $pdo->prepare("SELECT * FROM User WHERE Email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    if (empty($email) || empty($password)) {
+        $sessionService->setFlashMessage('error', 'Email and password are required');
+        header('Location: /src/admin/login.html');
+        exit();
+    }
+
+    $user = $db->getUserByEmail($email);
 
     if ($user && password_verify($password, $user['Password'])) {
-        $_SESSION['client_id'] = $user['UserID'];
+        $sessionService->setUserId($user['UserID']);
+        $sessionService->setFlashMessage('success', 'Login successful');
         header('Location: /index.php');
         exit();
     } else {
-        echo "Invalid credentials.";
+        $sessionService->setFlashMessage('error', 'Invalid email or password');
+        header('Location: /src/admin/login.html');
+        exit();
     }
+} else {
+    // Если не POST запрос, перенаправляем на форму входа
+    header('Location: /src/admin/login.html');
+    exit();
 }
