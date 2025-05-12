@@ -11,3 +11,41 @@
 .pretty-button:hover {
     background-color: #213488;
 }
+.auth-choose {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+}
+.auth-complete {
+    display: flex;
+    justify-content: space-around;
+    width: 10rem;
+}
+.delimiter {
+    font-size: 2.25rem;
+    align-self: last baseline;
+    width: 1rem;
+}
+.profile-data,
+.change-data,
+.make-friends {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+.personal-data,
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+.profile-btn {
+    align-content: end;
+}
+.right-placing {
+    align-self: flex-end;
+}
+.profile-page-header {
+    display: flex;
+    justify-content: space-between;
+}
