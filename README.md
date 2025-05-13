@@ -81,4 +81,7 @@ failed to solve: failed to prepare rgkbxkk5w3loohfs6f47ioqkp as jfjmvba7gjihi9mt
 docker rmi -f $(docker images -a -q)
 ```
 
+## Useful links
 
+> [!TIP] How to log php errors into docker container logs?
+> see [the website](https://dev.to/mtk3d/how-to-configure-php-logs-for-docker-2384)
